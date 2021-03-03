@@ -1,0 +1,61 @@
+{
+	"name": "Notebook 1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SnOPDevSparkLg",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "112g",
+			"driverCores": 16,
+			"executorMemory": "112g",
+			"executorCores": 16,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/ac534e5c-69f4-4849-af06-90795fb439b5/resourceGroups/SnOP_Dev/providers/Microsoft.Synapse/workspaces/snopdevsynapse/bigDataPools/SnOPDevSparkLg",
+				"name": "SnOPDevSparkLg",
+				"type": "Spark",
+				"endpoint": "https://snopdevsynapse.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SnOPDevSparkLg",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "2.4",
+				"nodeCount": 3,
+				"cores": 16,
+				"memory": 112
+			}
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"from pyspark.sql import SparkSession\n",
+					"from pyspark.sql.types import *\n",
+					"\n",
+					"# Primary storage info\n",
+					"account_name = 'pelladevadls' # fill in your primary account name\n",
+					"container_name = 'pelladevadlsfs' # fill in your container name\n",
+					"relative_path = 'landing/transformed/snop/*.parquet' # fill in your relative folder path\n",
+					"\n",
+					"adls_path = 'abfss://%s@%s.dfs.core.windows.net/%s' % (container_name, account_name, relative_path)\n",
+					"print('Primary storage account path: ' + adls_path)"
+				],
+				"execution_count": 1
+			}
+		]
+	}
+}

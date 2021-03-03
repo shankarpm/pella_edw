@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "select top 1000 *\nfrom openrowset(\n    bulk 'https://pelladevadls.blob.core.windows.net/pelladevadlsfs/landing/transformed/snop/*.parquet',\n    format = 'parquet') \n     as pqm",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
